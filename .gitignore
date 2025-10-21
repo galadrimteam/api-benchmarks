@@ -1,0 +1,11 @@
+node_modules
+.venv
+target
+
+**/*.pyc
+**/*.csv
+**/*.json
+!.devcontainer/devcontainer.json
+**/*.txt
+**/*.md
+!**/README.md
