@@ -1,1 +1,1 @@
-SELECT id, password_hash FROM users WHERE email = $1;
+SELECT id, password_hash, is_admin FROM users WHERE email = $1;
