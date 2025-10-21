@@ -27,10 +27,10 @@ const TEST_CONFIGS = [
   // { name: 'write_medium', type: 'write', vus: 200, duration: '30s' },
   // { name: 'write_heavy', type: 'write', vus: 500, duration: '30s' },
   // { name: 'write_extreme', type: 'write', vus: 1000, duration: '30s' },
-  { name: 'mixed_light', type: 'mixed', vus: 50, duration: '10s' },
-  { name: 'mixed_medium', type: 'mixed', vus: 200, duration: '10s' },
-  { name: 'mixed_heavy', type: 'mixed', vus: 500, duration: '10s' },
-  { name: 'mixed_extreme', type: 'mixed', vus: 1000, duration: '10s' },
+  { name: 'mixed_light', type: 'mixed', vus: 50, duration: '30s' },
+  { name: 'mixed_medium', type: 'mixed', vus: 200, duration: '30s' },
+  { name: 'mixed_heavy', type: 'mixed', vus: 500, duration: '30s' },
+  { name: 'mixed_extreme', type: 'mixed', vus: 1000, duration: '30s' },
 ];
 
 const DEFAULT_CREDENTIALS = {
@@ -68,12 +68,12 @@ function loadEnvForImplementation(implAbsPath) {
   if (existsSync(rootEnvPath)) {
     try {
       merged = { ...merged, ...parseDotenv(readFileSync(rootEnvPath, 'utf8')) };
-    } catch {}
+    } catch { }
   }
   if (existsSync(implEnvPath)) {
     try {
       merged = { ...merged, ...parseDotenv(readFileSync(implEnvPath, 'utf8')) };
-    } catch {}
+    } catch { }
   }
   return merged;
 }
@@ -399,7 +399,7 @@ async function runBenchmark(impl, config, testConfig, outputDir, credentials) {
         }
       } catch (e) {
         console.warn(`Failed to parse JSON results for ${impl}_${testConfig.name}:`, e.message);
-      } 
+      }
     }
 
     return {
