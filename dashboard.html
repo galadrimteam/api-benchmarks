@@ -6,6 +6,7 @@
     <title>API Benchmark Results Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <script src="./benchmark_data.js"></script>
     <style>
         * {
             margin: 0;
@@ -262,6 +263,9 @@
         <div class="header">
             <h1>🚀 API Benchmark Dashboard</h1>
             <p>Performance comparison across different implementations and scenarios</p>
+            <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 10px;">
+                📝 To update data: run <code>python3 scripts/generate_dashboard_data.py</code>
+            </p>
         </div>
 
         <div class="stats-grid">
@@ -364,664 +368,8 @@
     </div>
 
     <script>
-        // Benchmark data with detailed metrics
-        const benchmarkData = [
-  {
-    "implementation": "go-fiber",
-    "test": "mixed_extreme",
-    "vus": 1000,
-    "duration": "10s",
-    "rps": 8977.292321752959,
-    "status": "success",
-    "responseTime": {
-      "min": 0.2,
-      "med": 81.602,
-      "avg": 103.9992357520191,
-      "max": 524.246,
-      "p95": 207.3114,
-      "p99": 311.59439999999995
-    },
-    "totalRequests": 96733,
-    "checks": {
-      "passes": 95632,
-      "fails": 0,
-      "rate": 1
-    }
-  },
-  {
-    "implementation": "go-fiber",
-    "test": "mixed_heavy",
-    "vus": 500,
-    "duration": "10s",
-    "rps": 10784.361328369147,
-    "status": "success",
-    "responseTime": {
-      "min": 0.2,
-      "med": 31.872,
-      "avg": 43.69455057520308,
-      "max": 140.653,
-      "p95": 85.49479999999998,
-      "p99": 101.01016
-    },
-    "totalRequests": 114829,
-    "checks": {
-      "passes": 113728,
-      "fails": 0,
-      "rate": 1
-    }
-  },
-  {
-    "implementation": "go-fiber",
-    "test": "mixed_light",
-    "vus": 50,
-    "duration": "10s",
-    "rps": 10414.69608252959,
-    "status": "success",
-    "responseTime": {
-      "min": 0.207,
-      "med": 3.52,
-      "avg": 4.543264664682974,
-      "max": 49.521,
-      "p95": 9.065799999999996,
-      "p99": 12.667519999999998
-    },
-    "totalRequests": 109225,
-    "checks": {
-      "passes": 108124,
-      "fails": 0,
-      "rate": 1
-    }
-  },
-  {
-    "implementation": "go-fiber",
-    "test": "mixed_medium",
-    "vus": 200,
-    "duration": "10s",
-    "rps": 10100.127711050938,
-    "status": "success",
-    "responseTime": {
-      "min": 0.268,
-      "med": 13.969,
-      "avg": 18.536700536742266,
-      "max": 98.387,
-      "p95": 36.237399999999994,
-      "p99": 47.891759999999984
-    },
-    "totalRequests": 107873,
-    "checks": {
-      "passes": 106772,
-      "fails": 0,
-      "rate": 1
-    }
-  },
-  {
-    "implementation": "js-bun-express+bunpg",
-    "test": "mixed_extreme",
-    "vus": 1000,
-    "duration": "10s",
-    "rps": 7279.92588728712,
-    "status": "success",
-    "responseTime": {
-      "min": 0.502,
-      "med": 94.52,
-      "avg": 121.75401896644875,
-      "max": 521.304,
-      "p95": 244.61259999999996,
-      "p99": 287.67536
-    },
-    "totalRequests": 83305,
-    "checks": {
-      "passes": 82204,
-      "fails": 0,
-      "rate": 1
-    }
-  },
-  {
-    "implementation": "js-bun-express+bunpg",
-    "test": "mixed_heavy",
-    "vus": 500,
-    "duration": "10s",
-    "rps": 8334.95,
-    "status": "success",
-    "responseTime": {
-      "min": 0.486,
-      "med": 46.191,
-      "avg": 58.89174937067593,
-      "max": 180.414,
-      "p95": 114.29,
-      "p99": 141.96771999999996
-    },
-    "totalRequests": 85409,
-    "checks": {
-      "passes": 84308,
-      "fails": 0,
-      "rate": 1
-    }
-  },
-  {
-    "implementation": "js-bun-express+bunpg",
-    "test": "mixed_light",
-    "vus": 50,
-    "duration": "10s",
-    "rps": 7786.53,
-    "status": "success",
-    "responseTime": {
-      "min": 0.493,
-      "med": 4.945,
-      "avg": 6.296908687573475,
-      "max": 71.204,
-      "p95": 14.574399999999995,
-      "p99": 19.886679999999995
-    },
-    "totalRequests": 79113,
-    "checks": {
-      "passes": 78012,
-      "fails": 0,
-      "rate": 1
-    }
-  },
-  {
-    "implementation": "js-bun-express+bunpg",
-    "test": "mixed_medium",
-    "vus": 200,
-    "duration": "10s",
-    "rps": 7959.78,
-    "status": "success",
-    "responseTime": {
-      "min": 0.429,
-      "med": 19.306,
-      "avg": 24.696669011914874,
-      "max": 84.956,
-      "p95": 49.66439999999999,
-      "p99": 62.62944
-    },
-    "totalRequests": 81157,
-    "checks": {
-      "passes": 80056,
-      "fails": 0,
-      "rate": 1
-    }
-  },
-  {
-    "implementation": "js-bun-express",
-    "test": "mixed_extreme",
-    "vus": 1000,
-    "duration": "10s",
-    "rps": 10832.99,
-    "status": "success",
-    "responseTime": {
-      "min": 0.358,
-      "med": 70.356,
-      "avg": 90.55021996319648,
-      "max": 273.264,
-      "p95": 173.4748,
-      "p99": 202.91179999999997
-    },
-    "totalRequests": 111405,
-    "checks": {
-      "passes": 110304,
-      "fails": 0,
-      "rate": 1
-    }
-  },
-  {
-    "implementation": "js-bun-express",
-    "test": "mixed_heavy",
-    "vus": 500,
-    "duration": "10s",
-    "rps": 9256.7,
-    "status": "success",
-    "responseTime": {
-      "min": 0.387,
-      "med": 42.816,
-      "avg": 52.980324519662425,
-      "max": 413.771,
-      "p95": 99.46439999999998,
-      "p99": 132.14695999999998
-    },
-    "totalRequests": 94777,
-    "checks": {
-      "passes": 93676,
-      "fails": 0,
-      "rate": 1
-    }
-  },
-  {
-    "implementation": "js-bun-express",
-    "test": "mixed_light",
-    "vus": 50,
-    "duration": "10s",
-    "rps": 11663.57,
-    "status": "success",
-    "responseTime": {
-      "min": 0.303,
-      "med": 3.252,
-      "avg": 4.213436766390887,
-      "max": 64.076,
-      "p95": 9.773799999999994,
-      "p99": 15.656759999999998
-    },
-    "totalRequests": 117825,
-    "checks": {
-      "passes": 116724,
-      "fails": 0,
-      "rate": 1
-    }
-  },
-  {
-    "implementation": "js-bun-express",
-    "test": "mixed_medium",
-    "vus": 200,
-    "duration": "10s",
-    "rps": 11392.5,
-    "status": "success",
-    "responseTime": {
-      "min": 0.386,
-      "med": 15.197,
-      "avg": 17.32811258174872,
-      "max": 85.023,
-      "p95": 32.365,
-      "p99": 43.59968
-    },
-    "totalRequests": 115445,
-    "checks": {
-      "passes": 114344,
-      "fails": 0,
-      "rate": 1
-    }
-  },
-  {
-    "implementation": "js-bun-native",
-    "test": "mixed_extreme",
-    "vus": 1000,
-    "duration": "10s",
-    "rps": null,
-    "status": "failed",
-    "responseTime": null,
-    "totalRequests": 0,
-    "checks": {
-      "passes": 0,
-      "fails": 0,
-      "rate": 0
-    }
-  },
-  {
-    "implementation": "js-bun-native",
-    "test": "mixed_heavy",
-    "vus": 500,
-    "duration": "10s",
-    "rps": 7614,
-    "status": "success",
-    "responseTime": {
-      "min": 0.467,
-      "med": 51.147,
-      "avg": 64.20215016174659,
-      "max": 249.155,
-      "p95": 135.3542,
-      "p99": 164.33836
-    },
-    "totalRequests": 78209,
-    "checks": {
-      "passes": 77108,
-      "fails": 0,
-      "rate": 1
-    }
-  },
-  {
-    "implementation": "js-bun-native",
-    "test": "mixed_light",
-    "vus": 50,
-    "duration": "10s",
-    "rps": 8824.21,
-    "status": "success",
-    "responseTime": {
-      "min": 0.357,
-      "med": 4.273,
-      "avg": 5.556066220728322,
-      "max": 72.386,
-      "p95": 13.071199999999992,
-      "p99": 18.158079999999995
-    },
-    "totalRequests": 89549,
-    "checks": {
-      "passes": 88448,
-      "fails": 0,
-      "rate": 1
-    }
-  },
-  {
-    "implementation": "js-bun-native",
-    "test": "mixed_medium",
-    "vus": 200,
-    "duration": "10s",
-    "rps": null,
-    "status": "failed",
-    "responseTime": null,
-    "totalRequests": 0,
-    "checks": {
-      "passes": 0,
-      "fails": 0,
-      "rate": 0
-    }
-  },
-  {
-    "implementation": "js-node-express",
-    "test": "mixed_extreme",
-    "vus": 1000,
-    "duration": "10s",
-    "rps": 4399.12,
-    "status": "success",
-    "responseTime": {
-      "min": 0.739,
-      "med": 160.153,
-      "avg": 195.1706870700136,
-      "max": 2029.027,
-      "p95": 355.924,
-      "p99": 492.69908
-    },
-    "totalRequests": 45205,
-    "checks": {
-      "passes": 44104,
-      "fails": 0,
-      "rate": 1
-    }
-  },
-  {
-    "implementation": "js-node-express",
-    "test": "mixed_heavy",
-    "vus": 500,
-    "duration": "10s",
-    "rps": null,
-    "status": "failed",
-    "responseTime": null,
-    "totalRequests": 0,
-    "checks": {
-      "passes": 0,
-      "fails": 0,
-      "rate": 0
-    }
-  },
-  {
-    "implementation": "js-node-express",
-    "test": "mixed_light",
-    "vus": 50,
-    "duration": "10s",
-    "rps": 4399.12,
-    "status": "success",
-    "responseTime": {
-      "min": 0.655,
-      "med": 10.383,
-      "avg": 11.067462982181125,
-      "max": 191.233,
-      "p95": 17.753199999999996,
-      "p99": 22.031599999999997
-    },
-    "totalRequests": 45289,
-    "checks": {
-      "passes": 44188,
-      "fails": 0,
-      "rate": 1
-    }
-  },
-  {
-    "implementation": "js-node-express",
-    "test": "mixed_medium",
-    "vus": 200,
-    "duration": "10s",
-    "rps": 4133.65,
-    "status": "success",
-    "responseTime": {
-      "min": 0.651,
-      "med": 43.091,
-      "avg": 46.767147739724116,
-      "max": 1530.792,
-      "p95": 72.3318,
-      "p99": 79.68115999999999
-    },
-    "totalRequests": 42893,
-    "checks": {
-      "passes": 41792,
-      "fails": 0,
-      "rate": 1
-    }
-  },
-  {
-    "implementation": "python-fastapi-granian",
-    "test": "mixed_extreme",
-    "vus": 1000,
-    "duration": "10s",
-    "rps": null,
-    "status": "failed",
-    "responseTime": null,
-    "totalRequests": 0,
-    "checks": {
-      "passes": 0,
-      "fails": 0,
-      "rate": 0
-    }
-  },
-  {
-    "implementation": "python-fastapi-granian",
-    "test": "mixed_heavy",
-    "vus": 500,
-    "duration": "10s",
-    "rps": null,
-    "status": "failed",
-    "responseTime": null,
-    "totalRequests": 0,
-    "checks": {
-      "passes": 0,
-      "fails": 0,
-      "rate": 0
-    }
-  },
-  {
-    "implementation": "python-fastapi-granian",
-    "test": "mixed_light",
-    "vus": 50,
-    "duration": "10s",
-    "rps": 6942.68,
-    "status": "success",
-    "responseTime": {
-      "min": 0.547,
-      "med": 2.772,
-      "avg": 7.0154493435593,
-      "max": 259.687,
-      "p95": 18.048999999999968,
-      "p99": 129.37024
-    },
-    "totalRequests": 70697,
-    "checks": {
-      "passes": 69596,
-      "fails": 0,
-      "rate": 1
-    }
-  },
-  {
-    "implementation": "python-fastapi-granian",
-    "test": "mixed_medium",
-    "vus": 200,
-    "duration": "10s",
-    "rps": 6867.93,
-    "status": "success",
-    "responseTime": {
-      "min": 0.547,
-      "med": 9.962,
-      "avg": 28.476422951659277,
-      "max": 900.965,
-      "p95": 148.0744,
-      "p99": 221.24947999999998
-    },
-    "totalRequests": 70313,
-    "checks": {
-      "passes": 69212,
-      "fails": 0,
-      "rate": 1
-    }
-  },
-  {
-    "implementation": "python-fastapi-uvicorn",
-    "test": "mixed_extreme",
-    "vus": 1000,
-    "duration": "10s",
-    "rps": null,
-    "status": "failed",
-    "responseTime": null,
-    "totalRequests": 0,
-    "checks": {
-      "passes": 0,
-      "fails": 0,
-      "rate": 0
-    }
-  },
-  {
-    "implementation": "python-fastapi-uvicorn",
-    "test": "mixed_heavy",
-    "vus": 500,
-    "duration": "10s",
-    "rps": null,
-    "status": "failed",
-    "responseTime": null,
-    "totalRequests": 0,
-    "checks": {
-      "passes": 0,
-      "fails": 0,
-      "rate": 0
-    }
-  },
-  {
-    "implementation": "python-fastapi-uvicorn",
-    "test": "mixed_light",
-    "vus": 50,
-    "duration": "10s",
-    "rps": 6948.21,
-    "status": "success",
-    "responseTime": {
-      "min": 0.362,
-      "med": 2.886,
-      "avg": 7.030230391671488,
-      "max": 259.687,
-      "p95": 18.048999999999968,
-      "p99": 129.37024
-    },
-    "totalRequests": 70697,
-    "checks": {
-      "passes": 69596,
-      "fails": 0,
-      "rate": 1
-    }
-  },
-  {
-    "implementation": "python-fastapi-uvicorn",
-    "test": "mixed_medium",
-    "vus": 200,
-    "duration": "10s",
-    "rps": 7204.2,
-    "status": "success",
-    "responseTime": {
-      "min": 0.083,
-      "med": 7.944,
-      "avg": 27.129327490287753,
-      "max": 547.058,
-      "p95": 151.68279999999993,
-      "p99": 223.48259999999993
-    },
-    "totalRequests": 73877,
-    "checks": {
-      "passes": 72776,
-      "fails": 0,
-      "rate": 1
-    }
-  },
-  {
-    "implementation": "rust-axum",
-    "test": "mixed_extreme",
-    "vus": 1000,
-    "duration": "10s",
-    "rps": 10971.31,
-    "status": "success",
-    "responseTime": {
-      "min": 0.188,
-      "med": 69.533,
-      "avg": 89.59782302899648,
-      "max": 233.699,
-      "p95": 173.2256,
-      "p99": 200.47871999999998
-    },
-    "totalRequests": 112827,
-    "checks": {
-      "passes": 111726,
-      "fails": 0,
-      "rate": 1
-    }
-  },
-  {
-    "implementation": "rust-axum",
-    "test": "mixed_heavy",
-    "vus": 500,
-    "duration": "10s",
-    "rps": 11740.98,
-    "status": "success",
-    "responseTime": {
-      "min": 0.188,
-      "med": 31.006,
-      "avg": 41.74449029126214,
-      "max": 113.243,
-      "p95": 81.40239999999999,
-      "p99": 95.17695999999999
-    },
-    "totalRequests": 120509,
-    "checks": {
-      "passes": 119408,
-      "fails": 0,
-      "rate": 1
-    }
-  },
-  {
-    "implementation": "rust-axum",
-    "test": "mixed_light",
-    "vus": 50,
-    "duration": "10s",
-    "rps": 11511.99,
-    "status": "success",
-    "responseTime": {
-      "min": 0.194,
-      "med": 3.228,
-      "avg": 4.277180953858617,
-      "max": 23.325,
-      "p95": 8.51,
-      "p99": 10.469
-    },
-    "totalRequests": 116013,
-    "checks": {
-      "passes": 115312,
-      "fails": 0,
-      "rate": 1
-    }
-  },
-  {
-    "implementation": "rust-axum",
-    "test": "mixed_medium",
-    "vus": 200,
-    "duration": "10s",
-    "rps": 11932.65,
-    "status": "success",
-    "responseTime": {
-      "min": 0.188,
-      "med": 12.714,
-      "avg": 16.47206896551724,
-      "max": 62.567,
-      "p95": 32.365,
-      "p99": 42.816
-    },
-    "totalRequests": 121427,
-    "checks": {
-      "passes": 120326,
-      "fails": 0,
-      "rate": 1
-    }
-  }
-];
+        // Global variables - benchmarkData is loaded from benchmark_data.js
+        let filteredData = [];
 
         // Color schemes
         const implementationColors = {
@@ -1036,16 +384,39 @@
         };
 
         let charts = {};
-        let filteredData = benchmarkData;
         let currentSort = { column: null, direction: 'asc' };
 
         // Initialize dashboard
         function initDashboard() {
-            updateStats();
-            populateFilters();
-            createCharts();
-            populateTable();
-            setupEventListeners();
+            try {
+                // Check if benchmark data is available
+                if (typeof window.benchmarkData === 'undefined') {
+                    console.error('Benchmark data not loaded. Make sure benchmark_data.js is included.');
+                    showErrorState();
+                    return;
+                }
+                
+                // Initialize filtered data
+                filteredData = window.benchmarkData;
+                
+                // Initialize dashboard components
+                updateStats();
+                populateFilters();
+                createCharts();
+                populateTable();
+                setupEventListeners();
+                
+            } catch (error) {
+                console.error('Failed to initialize dashboard:', error);
+                showErrorState();
+            }
+        }
+
+        function showErrorState() {
+            document.getElementById('totalTests').textContent = 'Error';
+            document.getElementById('successfulTests').textContent = 'Error';
+            document.getElementById('failedTests').textContent = 'Error';
+            document.getElementById('topRPS').textContent = 'Error';
         }
 
         function updateStats() {
@@ -1061,7 +432,7 @@
         }
 
         function populateFilters() {
-            const implementations = [...new Set(benchmarkData.map(d => d.implementation))];
+            const implementations = [...new Set(window.benchmarkData.map(d => d.implementation))];
             const implementationSelect = document.getElementById('implementationFilter');
             
             implementations.forEach(impl => {
@@ -1740,7 +1111,7 @@
             const scenarioFilter = document.getElementById('scenarioFilter').value;
             const implementationFilter = document.getElementById('implementationFilter').value;
             
-            filteredData = benchmarkData.filter(d => {
+            filteredData = window.benchmarkData.filter(d => {
                 const scenarioMatch = scenarioFilter === 'all' || d.test === scenarioFilter;
                 const implMatch = implementationFilter === 'all' || d.implementation === implementationFilter;
                 return scenarioMatch && implMatch;

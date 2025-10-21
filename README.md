@@ -31,4 +31,12 @@ bun run scripts/k6/benchmark_runner.mjs --parallel
 
 ## See results
 
+### Generate dashboard data
+
+```bash
+python3 scripts/generate_dashboard_data.py
+```
+
+### Open dashboard
+
 Open `dashboard.html` in your browser
