@@ -1,0 +1,21 @@
+[project]
+name = "python-fastapi"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi[standard]>=0.119.0",
+    "asyncpg>=0.29.0",
+    "PyJWT>=2.8.0",
+    "bcrypt>=5.0.0",
+    "ruff>=0.14.1",
+    "uvloop>=0.19.0",
+    "httptools>=0.6.0",
+    "granian>=2.5.5",
+]
+
+[dependency-groups]
+dev = [
+    "loguru>=0.7.3",
+]
